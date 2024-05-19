@@ -10,10 +10,34 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         TabView {
-            WelcomePage()
-            Bruh()
+            Group {
+                NavigationStack {
+                    WelcomePage()
+                }
+                .tabItem {
+                    Label("Home", systemImage: "house.fill")
+                }
+                NavigationStack {
+                    Bruh()
+                        .navigationTitle("Button itself")
+                        .toolbar(.visible, for: .navigationBar)
+                }
+                .tabItem {
+                    Label("Button", systemImage: "button.roundedtop.horizontal.fill")
+                }
+                NavigationStack{
+                    About()
+                        .navigationTitle("About")
+                                                .toolbar(.visible, for: .navigationBar)
+                }
+                .tabItem {
+                    Label("About", systemImage: "info")
+                }
+                
+            }
         }
-        .tabViewStyle(.page)
+
+        
     }
 }
 
